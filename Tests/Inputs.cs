@@ -4,21 +4,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
-    public class Inputs
+    [TestFixture]
+    public class Inputs : Basic
     {
-        private IWebDriver driver;
         private IWebElement inputField;
 
         [SetUp]
         public void Setup()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--incognito");
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/inputs");
-            driver.Manage().Window.Maximize();
-
             inputField = driver.FindElement(By.TagName("input"));
         }
 
@@ -41,7 +35,7 @@ namespace TMS_Selenium.Tests
             inputField.SendKeys(Keys.ArrowUp);
             var value = inputField.GetAttribute("value");
             string expectedValue = "-122";
-            Assert.AreEqual(value, expectedValue, $"Expected the next number '{expectedValue}' when pressing Arrow Up, but got '{value}'.");
+            Assert.That(value, Is.EqualTo(expectedValue), $"Expected the next number '{expectedValue}' when pressing Arrow Up, but got '{value}'.");
         }
 
         [Test]
@@ -51,7 +45,7 @@ namespace TMS_Selenium.Tests
             inputField.SendKeys(text);
             var value = inputField.GetAttribute("value");
             string expectedValue = "";
-            Assert.IsTrue(value == expectedValue, $"Expected an empty string after input, but got '{value}'.");
+            Assert.That(value, Is.EqualTo(expectedValue), $"Expected an empty string after input, but got '{value}'.");
         }
 
         [Test]
@@ -75,13 +69,7 @@ namespace TMS_Selenium.Tests
             inputField.SendKeys(Keys.ArrowDown);
             inputField.SendKeys(Keys.ArrowUp);
             var value = inputField.GetAttribute("value");
-            Assert.IsTrue(value == number, $"Expected the entered number '{number}' after pressing Arrow Down and Arrow Up, but got '{value}'.");
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            driver.Quit();
+            Assert.That(value, Is.EqualTo(number), $"Expected the entered number '{number}' after pressing Arrow Down and Arrow Up, but got '{value}'.");
         }
     }
 }

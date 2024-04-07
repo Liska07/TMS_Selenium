@@ -1,11 +1,9 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Add_Delete_Elements : Basic
+    public class Add_Delete_Elements : BaseTest
     {
         [Test]
         public void AddTwoElementsAndOneDelete_SingleDeleteButton()

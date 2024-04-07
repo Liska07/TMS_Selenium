@@ -1,17 +1,15 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Typos : Basic
+    public class Typos : BaseTest
     {
         ReadOnlyCollection<IWebElement> paragraphs;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/typos");
             paragraphs = driver.FindElements(By.TagName("p"));

@@ -1,16 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Basic
+    [Parallelizable(ParallelScope.Self)]
+    public class BaseTest
     {
         protected IWebDriver driver;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--incognito");

@@ -1,16 +1,14 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Inputs : Basic
+    public class Inputs : BaseTest
     {
         private IWebElement inputField;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/inputs");
             inputField = driver.FindElement(By.TagName("input"));

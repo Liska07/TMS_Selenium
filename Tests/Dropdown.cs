@@ -1,16 +1,15 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Dropdown : Basic
+    public class Dropdown : BaseTest
     {
         private SelectElement select;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dropdown");
             var selectWebElement = driver.FindElement(By.Id("dropdown"));

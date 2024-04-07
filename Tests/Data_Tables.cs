@@ -1,14 +1,12 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace TMS_Selenium.Tests
 {
     [TestFixture]
-    public class Data_Tables : Basic
+    public class Data_Tables : BaseTest
     {
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/tables");
         }

@@ -2,7 +2,6 @@
 
 namespace TMS_Selenium.Test
 {
-    [TestFixture]
     public class ItemTests : BaseTest
     {
         [Test]

@@ -14,8 +14,8 @@ namespace TMS_Selenium.Tests
         public void ClickAlertButton_CheckAlertText()
         {
             string expectedAlertText = "You clicked a button";
-            
-            driver.FindElement(By.Id("alertButton")).Click();
+
+            wait.WaitForElementVisible(By.Id("alertButton")).Click();
             string actualAlertText = driver.SwitchTo().Alert().Text;
 
             Assert.That(actualAlertText, Is.EqualTo(expectedAlertText));
@@ -26,7 +26,7 @@ namespace TMS_Selenium.Tests
         {
             string expectedAlertText = "This alert appeared after 5 seconds";
 
-            driver.FindElement(By.Id("timerAlertButton")).Click();
+            wait.WaitForElementVisible(By.Id("timerAlertButton")).Click();
             wait.WaitForAlertPresent();
             string actualAlertText = driver.SwitchTo().Alert().Text;
 
@@ -38,9 +38,9 @@ namespace TMS_Selenium.Tests
         {
             string expectedMessage = "You selected Ok";
 
-            driver.FindElement(By.Id("confirmButton")).Click();
+            wait.WaitForElementVisible(By.Id("confirmButton")).Click();
             driver.SwitchTo().Alert().Accept();
-            string actualMessage = driver.FindElement(By.Id("confirmResult")).Text;
+            string actualMessage = wait.WaitForElementVisible(By.Id("confirmResult")).Text;
 
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
@@ -50,9 +50,9 @@ namespace TMS_Selenium.Tests
         {
             string expectedMessage = "You selected Cancel";
 
-            driver.FindElement(By.Id("confirmButton")).Click();
+            wait.WaitForElementVisible(By.Id("confirmButton")).Click();
             driver.SwitchTo().Alert().Dismiss();
-            string actualMessage = driver.FindElement(By.Id("confirmResult")).Text;
+            string actualMessage = wait.WaitForElementVisible(By.Id("confirmResult")).Text;
 
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
@@ -63,13 +63,13 @@ namespace TMS_Selenium.Tests
             string nameForEnter = "Liska";
             string expectedMessage = $"You entered {nameForEnter}";
 
-            driver.FindElement(By.Id("promtButton")).Click();
+            wait.WaitForElementVisible(By.Id("promtButton")).Click();
 
             IAlert alert = driver.SwitchTo().Alert();
             alert.SendKeys(nameForEnter);
             alert.Accept();
 
-            string actualMessage = driver.FindElement(By.Id("promptResult")).Text;
+            string actualMessage = wait.WaitForElementVisible(By.Id("promptResult")).Text;
 
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
@@ -79,15 +79,17 @@ namespace TMS_Selenium.Tests
         {
             string nameForEnter = "Liska";
 
-            driver.FindElement(By.Id("promtButton")).Click();
+            wait.WaitForElementVisible(By.Id("promtButton")).Click();
 
             IAlert alert = driver.SwitchTo().Alert();
             alert.SendKeys(nameForEnter);
             alert.Dismiss();
 
-            int countMessages = driver.FindElements(By.Id("promptResult")).Count;
+            Assert.That(wait.WaitForElementInvisible(By.Id("promptResult")));
 
-            Assert.That(countMessages == 0);
+            //Another way to check if an element is missing:
+            //int countMessages = driver.FindElements(By.Id("promptResult")).Count;
+            //Assert.That(countMessages == 0);
         }
     }
 }

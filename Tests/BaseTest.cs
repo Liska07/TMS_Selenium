@@ -18,7 +18,7 @@ namespace TMS_Selenium.Tests
             options.AddArgument("--incognito");
             driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
-            wait = new WaitHelper(driver, TimeSpan.FromSeconds(10));
+            wait = new WaitHelper(driver);
         }
 
         [TearDown]

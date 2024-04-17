@@ -10,10 +10,10 @@ namespace TMS_Selenium.Utils
         private TimeSpan _timeout;
         private WebDriverWait _wait;
  
-        public WaitHelper(IWebDriver driver, TimeSpan timeout)
+        public WaitHelper(IWebDriver driver)
         {
             _driver = driver;
-            _timeout = timeout;
+            _timeout = TimeSpan.FromSeconds(10);
             _wait = new WebDriverWait(_driver, _timeout);
         }
 
@@ -30,6 +30,11 @@ namespace TMS_Selenium.Utils
         public void WaitForAlertPresent()
         {
             _wait.Until(ExpectedConditions.AlertIsPresent());
+        }
+
+        public IWebElement WaitForElementExists(By locator)
+        {
+            return _wait.Until(ExpectedConditions.ElementExists(locator));
         }
     }
 }

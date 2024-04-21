@@ -7,7 +7,7 @@ namespace TMS_Selenium.Test
     public class ProductsTests : BaseTest
     {
         [Test]
-        [AllureDescription("Test to check Logout")]
+        [AllureDescription("Check Logout")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureIssue("LgO-01")]
         [AllureFeature("Basic Functionality")]
@@ -21,7 +21,7 @@ namespace TMS_Selenium.Test
         }
 
         [Test]
-        [AllureDescription("Test to check the displayed number of products in the cart and the text on the buttons after adding products to the cart")]
+        [AllureDescription("Check the displayed number of products in the cart and the text on the buttons after adding products to the cart")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureFeature("Shopping")]
         [AllureStory("Adding products to cart")]
@@ -45,12 +45,11 @@ namespace TMS_Selenium.Test
                     Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
                     Assert.That(actuaFirstProductButtonText, Is.EqualTo(expectedButtonText));
                     Assert.That(actualSecondProductButtonText, Is.EqualTo(expectedButtonText));
-                }
-            );
+                });
         }
 
         [Test]
-        [AllureDescription("Test to check an empty cart and text on a button after adding a product to the cart and deleting it")]
+        [AllureDescription("Check an empty cart and text on a button after adding a product to the cart and deleting it")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureFeature("Shopping")]
         [AllureStory("Adding products to cart")]
@@ -70,12 +69,11 @@ namespace TMS_Selenium.Test
                 {
                     Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
                     Assert.That(actualButtonText, Is.EqualTo(expectedButtonText));
-                }
-            );
+                });
         }
 
         [Test]
-        [AllureDescription("Test to check the operation of \"try-catch\" in Tear Down in case of a failed test")]
+        [AllureDescription("Check the operation of 'try-catch' in Tear Down in case of a failed test")]
         [AllureFeature("Tests to fail")]
         public void CheckTryCatchInTearDown()
         {
@@ -88,7 +86,7 @@ namespace TMS_Selenium.Test
             logger.Debug("Clicked on product button");
 
             string actualButtonText = productsPage.ProductButton("Sauce Labs Fleece Jacket").Text;
-            logger.Debug("Got button text");
+            logger.Debug($"Got button text: '{actualButtonText}'");
 
             Assert.That(actualButtonText, Is.EqualTo(expectedButtonText));
         }

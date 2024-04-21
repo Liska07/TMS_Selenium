@@ -7,7 +7,7 @@ namespace TMS_Selenium.Test
     public class LoginTests : BaseTest
     {
         [Test]
-        [AllureDescription("Test to check logging with the correct username and password")]
+        [AllureDescription("Check logging with the correct username and password")]
         [AllureSeverity(SeverityLevel.blocker)]
         [AllureIssue("LgI-01")]
         [AllureTms("LgI_TMS-01")]
@@ -22,7 +22,7 @@ namespace TMS_Selenium.Test
         }
 
         [Test]
-        [AllureDescription("Test to check the error message if the correct username is entered, but the password is not entered")]
+        [AllureDescription("Check the error message if the correct username is entered, but the password is not entered")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureIssue("LgI-02")]
         [AllureTms("LgI_TMS-01")]
@@ -40,7 +40,7 @@ namespace TMS_Selenium.Test
         }
 
         [Test]
-        [AllureDescription("Test to check the error message if username and password are not entered")]
+        [AllureDescription("Check the error message if username and password are not entered")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureIssue("LgI-02")]
         [AllureTms("LgI_TMS-01")]
@@ -58,17 +58,17 @@ namespace TMS_Selenium.Test
         }
 
         [Test]
-        [AllureDescription("Test to check screenshots (entire screen and element) in case of a failed test")]
+        [AllureDescription("Check screenshots (entire screen and element) in case of a failed test")]
         [AllureFeature("Tests to fail")]
         public void CheckScreenshots()
         {
             string expectedErrorText = "Invalid error text for test failure";
 
             loginPage.Login();
-            logger.Debug("Clicked the \"Login\" button when the username and password fields are empty");
+            logger.Debug("Clicked the 'Login' button when the username and password fields are empty");
 
             string actualErrorText = loginPage.ErrorMessage().Text;
-            logger.Debug("Got error message text");
+            logger.Debug($"Got error message text: '{actualErrorText}'");
 
             Assert.That(actualErrorText, Is.EqualTo(expectedErrorText));
         }

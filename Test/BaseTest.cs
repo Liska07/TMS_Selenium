@@ -52,12 +52,12 @@ namespace TMS_Selenium.Test
                 if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
                 {
                     AttachScreenshotToAllure((ITakesScreenshot)driver, "ScreenshotEntireScreen");
-                    logger.Info("Attached screenshot entire screen to Allure");
+                    logger.Info("Attached a screenshot of the entire screen to Allure");
 
                     try
                     {
                         AttachScreenshotToAllure((ITakesScreenshot)loginPage.LoginContainer(), "ScreenshotElement");
-                        logger.Info("Attached screenshot element to Allure");
+                        logger.Info("Attached a screenshot of the element to  Allure");
                     }
                     catch (NoSuchElementException)
                     { }

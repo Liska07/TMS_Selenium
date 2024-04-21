@@ -8,8 +8,8 @@ namespace TMS_Selenium.Test
     public class ItemTests : BaseTest
     {
         [Test]
-        [AllureDescription("Test to check information on the Item page: the price and name of the product are the same as on the Products page, " +
-            "and the \"Add to cart\" button is displayed")]
+        [AllureDescription("Check information on the Item page: the price and name of the product are the same as on the Products page, " +
+            "and the 'Add to cart' button is displayed")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Viewing products")]
         public void OpenItemPage_CheckProductNameAndPriceAndButton()
@@ -29,12 +29,11 @@ namespace TMS_Selenium.Test
                     Assert.That(actualProductNameText, Is.EqualTo(productName));
                     Assert.That(actualProductPrice, Is.EqualTo(productPrice));
                     Assert.That(itemPage.AddToCartButton().Displayed);
-                }
-            );
+                });
         }
 
         [Test]
-        [AllureDescription("Test to check a button to return from an Item page to Products page")]
+        [AllureDescription("Check a button to return from an Item page to Products page")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Viewing products")]
         public void BackToProducts()
@@ -49,7 +48,7 @@ namespace TMS_Selenium.Test
         }
 
         [Test]
-        [AllureDescription("Test to check the displayed number of products in the cart and the text on the button after adding product to the cart on the Item page")]
+        [AllureDescription("Check the displayed number of products in the cart and the text on the button after adding product to the cart on the Item page")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureStory("Adding products to cart")]
         public void AddProductItemPage_CheckQuantityInCartAndButtonText()
@@ -68,8 +67,7 @@ namespace TMS_Selenium.Test
                 {
                     Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
                     Assert.That(itemPage.RemoveButton().Displayed);
-                }
-            );
+                });
         }
     }
 }

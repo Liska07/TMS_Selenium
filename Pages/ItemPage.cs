@@ -4,8 +4,6 @@ namespace TMS_Selenium.Pages
 {
     public class ItemPage : BasePage
     {
-        protected IWebDriver driver;
-
         private static readonly By _itemNameBy = By.CssSelector("[data-test='inventory-item-name']");
         private static readonly By _productPriceBy = By.CssSelector("[data-test='inventory-item-price']");
         private static readonly By _addToCartButtonBy = By.Id("add-to-cart");
@@ -14,7 +12,6 @@ namespace TMS_Selenium.Pages
         private static readonly By _cartLinkBy = By.CssSelector("[data-test='shopping-cart-link']");
         public ItemPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
         public IWebElement ItemName() => driver.FindElement(_itemNameBy);
         public IWebElement ProductPrice() => driver.FindElement(_productPriceBy);

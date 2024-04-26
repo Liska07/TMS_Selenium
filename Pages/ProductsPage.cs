@@ -4,15 +4,12 @@ namespace TMS_Selenium.Pages
 {
     public class ProductsPage : BasePage
     {
-        protected IWebDriver driver;
-
         private static readonly By _productsTitleBy = By.XPath("//*[text()='Products']");
         private static readonly By _menuButtonBy = By.Id("react-burger-menu-btn");
         private static readonly By _logoutLinkBy = By.Id("logout_sidebar_link");
         private static readonly By _cartLinkBy = By.CssSelector("[data-test='shopping-cart-link']");
         public ProductsPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
         public IWebElement ProductsTitle() => driver.FindElement(_productsTitleBy);
         public IWebElement MenuButton() => driver.FindElement(_menuButtonBy);

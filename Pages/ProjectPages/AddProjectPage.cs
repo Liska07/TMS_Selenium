@@ -29,7 +29,14 @@ namespace TMS_Selenium.Pages.ProjectPages
         }
         protected override bool EvaluateLoadedStatus()
         {
-            return AddProjectButton().Displayed;
+            try
+            {
+                return AddProjectButton().Displayed;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

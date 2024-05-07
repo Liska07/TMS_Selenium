@@ -4,7 +4,7 @@ using Allure.NUnit.Attributes;
 using NLog;
 using OpenQA.Selenium;
 using TMS_Selenium.Core;
-using TMS_Selenium.Utils;
+using TMS_Selenium.Pages;
 using TMS_Selenium.Steps;
 
 
@@ -34,7 +34,7 @@ namespace TMS_Selenium.Test
         public void Setup()
         {
             driver = new Browser().Driver;
-            driver.Navigate().GoToUrl(Configurator.ReadConfiguration().TestRailURL);
+            new LoginPage(driver, true);
             userStep = new UserStep(driver);
             navigationStep = new NavigationStep(driver);
         }

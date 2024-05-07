@@ -12,7 +12,7 @@ namespace TMS_Selenium.Pages.ProjectPages
         public ProjectListPage(IWebDriver driver, bool openPageByUrl = false) : base(driver, openPageByUrl)
         {
         }
-        public string GetMessage() => new UiElement(driver, _messageBy).Text.Trim();
+        public string GetMessage() => new Message(driver, _messageBy).Text.Trim();
         public Button AddProjectButton() => new Button(driver, _addProgectButton);
         public override string GetEndpoint()
         {
@@ -21,7 +21,14 @@ namespace TMS_Selenium.Pages.ProjectPages
 
         protected override bool EvaluateLoadedStatus()
         {
-            return AddProjectButton().Displayed;
+            try
+            {
+                return AddProjectButton().Displayed;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool IsProjectInList(string projectName)

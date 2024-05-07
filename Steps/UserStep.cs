@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using TMS_Selenium.Models;
 using TMS_Selenium.Pages;
 using TMS_Selenium.Pages.ProjectPages;
+using TMS_Selenium.Utils;
 
 namespace TMS_Selenium.Steps
 {
@@ -12,13 +13,23 @@ namespace TMS_Selenium.Steps
         {
         }
 
-        [AllureStep("Login")]
-        public DashboardPage Login(string userName, string password)
+        [AllureStep("Successful login")]
+        public DashboardPage SuccessfulLogin()
+        {
+            Login(Configurator.ReadConfiguration().UserName, Configurator.ReadConfiguration().Password);
+            return dashboardPage;
+        }
+
+        public LoginPage UnsuccessfulLogin(string userName = "", string password = "")
+        {
+            Login(userName, password);
+            return loginPage;
+        }
+        public void Login(string userName, string password)
         {
             loginPage.UserNameField().SendKeys(userName);
             loginPage.PasswordFeld().SendKeys(password);
             loginPage.LoginButton().Click();
-            return dashboardPage;
         }
 
         [AllureStep("Add a project with a given name and a radio button index")]

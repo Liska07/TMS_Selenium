@@ -22,7 +22,7 @@ namespace TMS_Selenium.Tests
         {
             string projectName = "EAntonova_";
 
-            userStep.Login(Configurator.ReadConfiguration().UserName, Configurator.ReadConfiguration().Password);
+            userStep.SuccessfulLogin();
             logger.Info("Login successful");
 
             int quantityMyProjects = navigationStep.NavigateToProjectList().GetProgectListByName(projectName).Count();

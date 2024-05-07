@@ -3,7 +3,6 @@ using Allure.NUnit.Attributes;
 using TMS_Selenium.Models;
 using TMS_Selenium.Pages.ProjectPages;
 using TMS_Selenium.Test;
-using TMS_Selenium.Utils;
 
 namespace TMS_Selenium.Tests
 {
@@ -20,7 +19,7 @@ namespace TMS_Selenium.Tests
             string projectName = "EAntonova_" + Guid.NewGuid();
             string expectedMessageText = "Successfully added the new project.";
 
-            userStep.Login(Configurator.ReadConfiguration().UserName, Configurator.ReadConfiguration().Password);
+            userStep.SuccessfulLogin();
             logger.Info("Login successful");
 
             ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 1);
@@ -42,7 +41,7 @@ namespace TMS_Selenium.Tests
             string projectName = "EAntonova_" + Guid.NewGuid();
             string expectedMessageText = "Successfully deleted the project.";
 
-            userStep.Login(Configurator.ReadConfiguration().UserName, Configurator.ReadConfiguration().Password);
+            userStep.SuccessfulLogin();
             logger.Info("Login successful");
 
             ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 0);
@@ -67,14 +66,14 @@ namespace TMS_Selenium.Tests
             string projectName = "EAntonova_" + Guid.NewGuid();
             ProjectModel projectInfo = new ProjectModel(projectName)
             {
-                Announcement = "Test Announcement",
+                Announcement = "Test announcement",
                 IsShowAnnouncement = true,
                 ProjectTypeByValue = "2",
                 IsEnableTestCase = true,
             };
             string expectedMessageText = "Successfully added the new project.";
 
-            userStep.Login(Configurator.ReadConfiguration().UserName, Configurator.ReadConfiguration().Password);
+            userStep.SuccessfulLogin();
             logger.Info("Login successful");
 
             ProjectListPage projectListPage = userStep.AddProjectWithModel(projectInfo);

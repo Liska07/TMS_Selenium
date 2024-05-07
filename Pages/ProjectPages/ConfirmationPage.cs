@@ -21,7 +21,14 @@ namespace TMS_Selenium.Pages.ProjectPages
 
         protected override bool EvaluateLoadedStatus()
         {
-            return OkButton().Displayed;
+            try
+            {
+                return OkButton().Displayed;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

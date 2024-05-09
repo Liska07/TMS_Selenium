@@ -25,8 +25,9 @@ namespace TMS_Selenium.Pages.ProjectPages
             {
                 return AddProjectButton().Displayed;
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error("'Add Project Button' on the 'Project List Page' is not  displayed! " + ex);
                 return false;
             }
         }

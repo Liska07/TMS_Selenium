@@ -25,8 +25,9 @@ namespace TMS_Selenium.Pages.ProjectPages
             {
                 return OkButton().Displayed;
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error("'OK Button' on the 'Conformation Page' is not  displayed! " + ex);
                 return false;
             }
         }

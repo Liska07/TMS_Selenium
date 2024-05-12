@@ -1,13 +1,5 @@
-﻿using Allure.Net.Commons;
-using Allure.NUnit.Attributes;
-using NUnit.Framework.Constraints;
-using OpenQA.Selenium;
-using TMS_Selenium.Element;
-using TMS_Selenium.Models;
-using TMS_Selenium.Pages;
-using TMS_Selenium.Pages.ProjectPages;
+﻿using Allure.NUnit.Attributes;
 using TMS_Selenium.Test;
-using TMS_Selenium.Utils;
 
 namespace TMS_Selenium.Tests
 {

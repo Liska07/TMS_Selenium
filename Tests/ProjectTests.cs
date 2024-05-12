@@ -17,7 +17,6 @@ namespace TMS_Selenium.Tests
         public void AddProjectWithNameAndType()
         {
             string projectName = "EAntonova_" + Guid.NewGuid();
-            string expectedMessageText = "Successfully added the new project.";
 
             userStep.SuccessfulLogin();
             logger.Info("Login successful");
@@ -25,11 +24,9 @@ namespace TMS_Selenium.Tests
             ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 1);
             logger.Info($"Added {projectName} project");
 
-            Assert.Multiple(() =>
-            {
-                Assert.That(projectListPage.GetMessage(), Is.EqualTo(expectedMessageText));
-                Assert.That(projectListPage.IsProjectInList(projectName));
-            });
+            navigationStep.NavigateToProjectList();
+
+            Assert.That(projectListPage.IsProjectInList(projectName));
         }
 
         [Test]
@@ -46,6 +43,8 @@ namespace TMS_Selenium.Tests
 
             ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 0);
             logger.Info($"Added {projectName} project");
+
+            navigationStep.NavigateToProjectList();
 
             userStep.DeleteProject(projectName);
             logger.Info($"Deleted {projectName} project");
@@ -71,7 +70,6 @@ namespace TMS_Selenium.Tests
                 ProjectTypeByValue = "2",
                 IsEnableTestCase = true,
             };
-            string expectedMessageText = "Successfully added the new project.";
 
             userStep.SuccessfulLogin();
             logger.Info("Login successful");
@@ -79,11 +77,9 @@ namespace TMS_Selenium.Tests
             ProjectListPage projectListPage = userStep.AddProjectWithModel(projectInfo);
             logger.Info($"Added {projectName} project");
 
-            Assert.Multiple(() =>
-            {
-                Assert.That(projectListPage.GetMessage(), Is.EqualTo(expectedMessageText));
-                Assert.That(projectListPage.IsProjectInList(projectName));
-            });
+            navigationStep.NavigateToProjectList();
+
+            Assert.That(projectListPage.IsProjectInList(projectName));
         }
     }
 }

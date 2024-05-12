@@ -12,7 +12,7 @@ namespace TMS_Selenium.Pages.ProjectPages
         public ConfirmationPage(IWebDriver driver) : base(driver)
         {
         }
-        public Checkbox IsDeleteProgectCheckbox() => new Checkbox(driver, _isDeleteProgectCheckboxBy);
+        public Checkbox IsDeleteProjectCheckbox() => new Checkbox(driver, _isDeleteProgectCheckboxBy);
         public Button OkButton() => new Button(driver, _okButton);
         public override string GetEndpoint()
         {

@@ -11,7 +11,7 @@ namespace TMS_Selenium.Tests
     public class LoginTests : BaseTest
     {
         [Test]
-        [AllureDescription("Check logging with the correct username and password")]
+        [AllureDescription("Check login with the correct username and password")]
         [AllureSeverity(SeverityLevel.blocker)]
         public void PositiveLogin()
         {

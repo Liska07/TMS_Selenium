@@ -35,7 +35,9 @@ namespace TMS_Selenium.Steps
         [AllureStep("Add a project with a given name and a radio button index")]
         public ProjectListPage AddProjectWithNameAndRadioButton(string projectName, int index)
         {
-            dashboardPage.AddProjectButton().Click();
+            new NavigationStep(driver).NavigateToProjectList();
+            projectListPage.AddProjectButton().Click();
+
             addProjectPage.NameField().SendKeys(projectName);
             addProjectPage.ProjectTypeRadioButton().SelectByIndex(index);
             addProjectPage.AddProjectButton().Click();
@@ -46,7 +48,7 @@ namespace TMS_Selenium.Steps
         public ProjectListPage DeleteProject(string projectName)
         {
             projectListPage.GetDeleteButtonByProjectName(projectName).Click();
-            confirmationPage.IsDeleteProgectCheckbox().Click();
+            confirmationPage.IsDeleteProjectCheckbox().Click();
             confirmationPage.OkButton().Click();
             return projectListPage;
         }
@@ -54,7 +56,8 @@ namespace TMS_Selenium.Steps
         [AllureStep("Add a project with a given project model")]
         public ProjectListPage AddProjectWithModel(ProjectModel projectModel)
         {
-            dashboardPage.AddProjectButton().Click();
+            new NavigationStep(driver).NavigateToProjectList();
+            projectListPage.AddProjectButton().Click();
 
             addProjectPage.NameField().SendKeys(projectModel.Name);
             

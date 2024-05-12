@@ -11,6 +11,10 @@ namespace TMS_Selenium.Core
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--incognito");
+            chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("--disable-gpu");
+            chromeOptions.AddArgument("--disable-extensions");
+            chromeOptions.AddArgument("--remote-debugging-pipe");
 
             new DriverManager().SetUpDriver(new ChromeConfig());
             return new ChromeDriver(chromeOptions);

@@ -8,7 +8,7 @@ on:
        description: 'Select test category'
        type: choice
        options:
-       - AllTests
+       - All
        - TestRail
        - Herokuapp
     required: true
@@ -37,7 +37,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute All tests
-      if: github.event.inputs.test_category == 'AllTests'
+      if: github.event.inputs.test_category == 'All'
       run: dotnet test
 
     - name: Execute TestRail tests

@@ -1,0 +1,2 @@
+2024/05/13 16:07:06.208|ERROR|Couldn't find checkbox with index: 9!     
+2024/05/13 16:07:06.306|INFO|Attached a screenshot to Allure     

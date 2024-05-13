@@ -3,6 +3,7 @@ using TMS_Selenium.Test;
 
 namespace TMS_Selenium.Tests
 {
+    [Category("TestRail")]
     [AllureEpic("TestRail")]
     [AllureStory("Helper")]
     public class HelperTests : BaseTest

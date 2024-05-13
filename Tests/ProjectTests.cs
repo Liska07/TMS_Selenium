@@ -6,6 +6,7 @@ using TMS_Selenium.Test;
 
 namespace TMS_Selenium.Tests
 {
+    [Category("TestRail")]
     [AllureEpic("TestRail")]
     [AllureFeature("Basic Functionality")]
     public class ProjectTests : BaseTest

@@ -5,6 +5,7 @@ using TMS_Selenium.Test;
 
 namespace TMS_Selenium.Tests
 {
+    [Category("Herokuapp")]
     [AllureEpic("Herokuapp")]
     [AllureFeature("CheckboxList")]
     public class CheckboxListTests : BaseTest

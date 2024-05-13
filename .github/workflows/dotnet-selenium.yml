@@ -36,7 +36,7 @@ jobs:
         dotnet-version: 8.0.x
 
     # Execute all unit tests in the solution
-    - name: Execute TestRail tests
+    - name: Execute All tests
       if: github.event.inputs.test_category == 'AllTests'
       run: dotnet test
 

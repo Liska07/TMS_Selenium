@@ -36,11 +36,11 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute TestRail tests
       if: github.event.inputs.test_category == 'TestRail'
-      run: dotnet test
+      run: dotnet test --filter Category=TestRail
 
     - name: Execute Herokuapp tests
       if: github.event.inputs.test_category == 'Herokuapp'
-      run: dotnet test
+      run: dotnet test --filter Category=Herokuapp
 
     - name: Load test report history
       uses: actions/checkout@v3

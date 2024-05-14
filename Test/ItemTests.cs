@@ -1,10 +1,17 @@
-﻿using TMS_Selenium.Utils;
+﻿using Allure.Net.Commons;
+using Allure.NUnit.Attributes;
+using TMS_Selenium.Utils;
 
 namespace TMS_Selenium.Test
 {
+    [AllureFeature("Shopping")]
     public class ItemTests : BaseTest
     {
         [Test]
+        [AllureDescription("Check information on the Item page: the price and name of the product are the same as on the Products page, " +
+            "and the 'Add to cart' button is displayed")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureStory("Viewing products")]
         public void OpenItemPage_CheckProductNameAndPriceAndButton()
         {
             loginPage.Login(Configurator.ReadConfiguration().UserNameSauceDemo, Configurator.ReadConfiguration().PasswordSauceDemo);
@@ -19,14 +26,16 @@ namespace TMS_Selenium.Test
 
             Assert.Multiple(() =>
                 {
-                    Assert.That(actualProductNameText, Is.EqualTo(productName), $"Expected item text '{productName}', but got '{actualProductNameText}'.");
-                    Assert.That(actualProductPrice, Is.EqualTo(productPrice), $"Expected product price '{productPrice}', but got '{actualProductPrice}'.");
-                    Assert.That(itemPage.AddToCartButton().Displayed, "Add To Cart button is not displayed.");
-                }
-            );
+                    Assert.That(actualProductNameText, Is.EqualTo(productName));
+                    Assert.That(actualProductPrice, Is.EqualTo(productPrice));
+                    Assert.That(itemPage.AddToCartButton().Displayed);
+                });
         }
 
         [Test]
+        [AllureDescription("Check a button to return from an Item page to Products page")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureStory("Viewing products")]
         public void BackToProducts()
         {
             loginPage.Login(Configurator.ReadConfiguration().UserNameSauceDemo, Configurator.ReadConfiguration().PasswordSauceDemo);
@@ -35,11 +44,14 @@ namespace TMS_Selenium.Test
             productsPage.OpenItemPage(productName);
             itemPage.BackToProductsButton().Click();
 
-            Assert.That(productsPage.ProductsTitle().Displayed, "Product title is not displayed.");
+            Assert.That(productsPage.ProductsTitle().Displayed);
         }
 
         [Test]
-        public void AddProduct_CheckQuantityInCartAndButtonText()
+        [AllureDescription("Check the displayed number of products in the cart and the text on the button after adding product to the cart on the Item page")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureStory("Adding products to cart")]
+        public void AddProductItemPage_CheckQuantityInCartAndButtonText()
         {
             string expectedQuantitytInCart = "1";
 
@@ -49,14 +61,13 @@ namespace TMS_Selenium.Test
             productsPage.OpenItemPage(productName);
             itemPage.AddToCartButton().Click();
 
-            string actualQuantityInCart = itemPage.CartLink().Text;
+            string actualQuantityInCart = headerPage.CartLink().Text;
 
             Assert.Multiple(() =>
                 {
-                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart), $"Expected quantity in cart '{expectedQuantitytInCart}', but got '{actualQuantityInCart}'.");
-                    Assert.That(itemPage.RemoveButton().Displayed, "Remove button is not displayed.");
-                }
-            );
+                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
+                    Assert.That(itemPage.RemoveButton().Displayed);
+                });
         }
     }
 }

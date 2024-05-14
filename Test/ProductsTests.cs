@@ -1,20 +1,30 @@
 ﻿using TMS_Selenium.Utils;
+using Allure.NUnit.Attributes;
+using Allure.Net.Commons;
 
 namespace TMS_Selenium.Test
 {
     public class ProductsTests : BaseTest
     {
         [Test]
+        [AllureDescription("Check Logout")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureIssue("LgO-01")]
+        [AllureFeature("Basic Functionality")]
+        [AllureStory("Logout")]
         public void Logout()
         {
             loginPage.Login(Configurator.ReadConfiguration().UserNameSauceDemo, Configurator.ReadConfiguration().PasswordSauceDemo);
-            productsPage.MenuButton().Click();
-            productsPage.LogoutLink().Click();
+            headerPage.Logout();
 
-            Assert.That(loginPage.LoginTitle().Displayed, "Login title is not displayed.");
+            Assert.That(loginPage.LoginTitle().Displayed);
         }
 
         [Test]
+        [AllureDescription("Check the displayed number of products in the cart and the text on the buttons after adding products to the cart")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureFeature("Shopping")]
+        [AllureStory("Adding products to cart")]
         public void AddProducts_CheckQuantityInCartAndButtonsText()
         {
             string expectedQuantitytInCart = "2";
@@ -26,20 +36,23 @@ namespace TMS_Selenium.Test
             productsPage.ProductButton(firstProduct).Click();
             productsPage.ProductButton(secondProduct).Click();
 
-            string actualQuantityInCart = productsPage.CartLink().Text;
+            string actualQuantityInCart = headerPage.CartLink().Text;
             string actuaFirstProductButtonText = productsPage.ProductButton(firstProduct).Text;
             string actualSecondProductButtonText = productsPage.ProductButton(secondProduct).Text;
 
             Assert.Multiple(() =>
                 {
-                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart), $"Expected quantity in cart '{expectedQuantitytInCart}', but got '{actualQuantityInCart}'.");
-                    Assert.That(actuaFirstProductButtonText, Is.EqualTo(expectedButtonText), $"Expected the button text '{expectedButtonText}', but got '{actuaFirstProductButtonText}'.");
-                    Assert.That(actualSecondProductButtonText, Is.EqualTo(expectedButtonText), $"Expected the button text '{expectedButtonText}', but got '{actualSecondProductButtonText}'.");
-                }
-            );
+                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
+                    Assert.That(actuaFirstProductButtonText, Is.EqualTo(expectedButtonText));
+                    Assert.That(actualSecondProductButtonText, Is.EqualTo(expectedButtonText));
+                });
         }
 
         [Test]
+        [AllureDescription("Check an empty cart and text on a button after adding a product to the cart and deleting it")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureFeature("Shopping")]
+        [AllureStory("Adding products to cart")]
         public void AddAndRemoveProduct_CheckQuantityInCartAndButtonText()
         {
             string expectedQuantitytInCart = "";
@@ -49,15 +62,33 @@ namespace TMS_Selenium.Test
             productsPage.ProductButton("Sauce Labs Fleece Jacket").Click();
             productsPage.ProductButton("Sauce Labs Fleece Jacket").Click();
 
-            string actualQuantityInCart = productsPage.CartLink().Text;
+            string actualQuantityInCart = headerPage.CartLink().Text;
             string actualButtonText = productsPage.ProductButton("Sauce Labs Fleece Jacket").Text;
             
             Assert.Multiple(() =>
                 {
-                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart), $"Expected quantity in cart '{expectedQuantitytInCart}', but got '{actualQuantityInCart}'.");
-                    Assert.That(actualButtonText, Is.EqualTo(expectedButtonText), $"Expected the button text '{expectedButtonText}', but got '{actualButtonText}'.");
-                }
-            );
+                    Assert.That(actualQuantityInCart, Is.EqualTo(expectedQuantitytInCart));
+                    Assert.That(actualButtonText, Is.EqualTo(expectedButtonText));
+                });
+        }
+
+        [Test]
+        [AllureDescription("Check the operation of 'try-catch' in Tear Down in case of a failed test")]
+        [AllureFeature("Tests to fail")]
+        public void CheckTryCatchInTearDown()
+        {
+            string expectedButtonText = "Invalid button text for test failure";
+
+            loginPage.Login(Configurator.ReadConfiguration().UserNameSauceDemo, Configurator.ReadConfiguration().PasswordSauceDemo);
+            logger.Debug("Successful login");
+
+            productsPage.ProductButton("Sauce Labs Fleece Jacket").Click();
+            logger.Debug("Clicked on product button");
+
+            string actualButtonText = productsPage.ProductButton("Sauce Labs Fleece Jacket").Text;
+            logger.Debug($"Got button text: '{actualButtonText}'");
+
+            Assert.That(actualButtonText, Is.EqualTo(expectedButtonText));
         }
     }
 }

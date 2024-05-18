@@ -19,15 +19,15 @@ namespace TMS_Selenium.Tests
         [AllureDescription("Check positive scenarios for 'Checkbox List' methods")]
         public void Checkbox_SelectByIndex()
         {
-            CheckboxList checkbox = new CheckboxList(driver, By.CssSelector("[type = checkbox]"));
+            CheckboxList checkboxes = new CheckboxList(driver, By.CssSelector("[type = checkbox]"));
 
-            checkbox.SelectByIndex(0);
-            checkbox.SelectByIndex(1);
+            checkboxes.SelectByIndex(0);
+            checkboxes.SelectByIndex(1);
 
             Assert.Multiple(() =>
             {
-                Assert.That(checkbox.IsChecked(0));
-                Assert.That(!checkbox.IsChecked(1));
+                Assert.That(checkboxes.IsCheckedByIndex(0));
+                Assert.That(!checkboxes.IsCheckedByIndex(1));
             });
         }
 

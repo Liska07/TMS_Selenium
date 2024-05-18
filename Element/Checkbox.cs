@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 
 namespace TMS_Selenium.Element
 {
@@ -10,8 +11,24 @@ namespace TMS_Selenium.Element
         {
             _uiElement = new UiElement(driver, locator);
         }
-        public void Click() => _uiElement.Click();
+
+        public Checkbox(IWebDriver driver, IWebElement element)
+        {
+            _uiElement = new UiElement(driver, element);
+        }
+        public void Select() => _uiElement.Click();
         public bool Displayed => _uiElement.Displayed;
         public bool Enabled => _uiElement.Enabled;
+        public bool IsChecked()
+        {
+            if (_uiElement.GetAttribute("checked") == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace TMS_Selenium.Steps
         public ProjectListPage DeleteProject(string projectName)
         {
             projectListPage.GetDeleteButtonByProjectName(projectName).Click();
-            confirmationPage.IsDeleteProjectCheckbox().Click();
+            confirmationPage.IsDeleteProjectCheckbox().Select();
             confirmationPage.OkButton().Click();
             return projectListPage;
         }
@@ -68,7 +68,7 @@ namespace TMS_Selenium.Steps
             
             if (projectModel.IsShowAnnouncement == true)
             {
-                addProjectPage.IsShowAnnouncementCheckbox().Click();
+                addProjectPage.IsShowAnnouncementCheckbox().Select();
             }
             
             if(projectModel.ProjectTypeByValue != null)
@@ -78,7 +78,7 @@ namespace TMS_Selenium.Steps
 
             if (projectModel.IsEnableTestCase == true)
             {
-                addProjectPage.IsEnableTestCaseCheckbox().Click();
+                addProjectPage.IsEnableTestCaseCheckbox().Select();
             }
             addProjectPage.AddProjectButton().Click();
             return projectListPage;

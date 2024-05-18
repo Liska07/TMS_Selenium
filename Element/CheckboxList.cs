@@ -5,16 +5,16 @@ namespace TMS_Selenium.Element
 {
     public class CheckboxList
     {
-        private readonly List<UiElement> _uiElements;
+        private readonly List<Checkbox> _checkboxes;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public CheckboxList(IWebDriver driver, By locator)
         {
-            _uiElements = new List<UiElement>();
+            _checkboxes = new List<Checkbox>();
             foreach (IWebElement element in driver.FindElements(locator))
             {
-                UiElement uiElement = new UiElement(driver, element);
-                _uiElements.Add(uiElement);
+                Checkbox checkbox = new Checkbox(driver, element);
+                _checkboxes.Add(checkbox);
             }
         }
 
@@ -25,9 +25,9 @@ namespace TMS_Selenium.Element
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SelectByIndex(int index)
         {
-            if (index < _uiElements.Count && index >= 0)
+            if (index < _checkboxes.Count && index >= 0)
             {
-                _uiElements[index].Click();
+                _checkboxes[index].Select();
             }
             else
             {
@@ -41,18 +41,11 @@ namespace TMS_Selenium.Element
         /// </summary>
         /// <param name="index"></param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public bool IsChecked(int index)
+        public bool IsCheckedByIndex(int index)
         {
-            if (index < _uiElements.Count && index >= 0)
+            if (index < _checkboxes.Count && index >= 0)
             {
-                if (_uiElements[index].GetAttribute("checked") == null)
-                {
-                    return false;
-                }
-                else 
-                { 
-                    return true; 
-                }
+                return _checkboxes[index].IsChecked();
             }
             else
             {

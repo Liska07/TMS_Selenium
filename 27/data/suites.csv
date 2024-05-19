@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Sun May 19 00:53:29 GMT 2024","Sun May 19 00:53:56 GMT 2024","27367","","","","CheckboxListTests","Checkbox_Negative","Checkbox_Negative","Check the correct operation of 'if-else' structures in 'Checkbox List' methods"
+"passed","Sun May 19 00:53:29 GMT 2024","Sun May 19 00:53:56 GMT 2024","27473","","","","CheckboxListTests","Checkbox_SelectByIndex","Checkbox_SelectByIndex","Check positive scenarios for 'Checkbox List' methods"

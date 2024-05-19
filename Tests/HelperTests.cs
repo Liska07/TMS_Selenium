@@ -16,15 +16,13 @@ namespace TMS_Selenium.Tests
             string projectName = "EAntonova_";
 
             userStep.SuccessfulLogin();
-            logger.Info("Login successful");
 
-            int quantityMyProjects = navigationStep.NavigateToProjectList().GetProgectListByName(projectName).Count();
+            int quantityMyProjects = navigationStep.NavigateToProjectList().GetProgectListByPartialName(projectName).Count();
             logger.Info($"Need to delete {quantityMyProjects} my projects");
 
             for (int i = 0; i < quantityMyProjects; i++)
             {
-                userStep.DeleteProject(projectName);
-                logger.Info($"Deleted {projectName} project number {i + 1}");
+                projectStep.DeleteProject(projectName);
             }
         }
     }

@@ -8,14 +8,19 @@ namespace TMS_Selenium.Pages.ProjectPages
     {
         private static readonly By _messageBy = By.CssSelector("[data-testid='messageSuccessDivBox']");
         private static readonly By _addProgectButton = By.XPath("//a[contains(text(), 'Add Project')]");
-        private static readonly By _projectsQuantityBy = By.ClassName("\"text-softer\"");
+        private static readonly By _projectsQuantityBy = By.ClassName("text-softer");
         private string _endPoint = "index.php?/admin/projects/overview";
         public ProjectListPage(IWebDriver driver, bool openPageByUrl = false) : base(driver, openPageByUrl)
         {
         }
         public string GetMessage() => new Message(driver, _messageBy).Text.Trim();
         public Button AddProjectButton() => new Button(driver, _addProgectButton);
-        public string GetProjectQuantity() => new Message(driver, _projectsQuantityBy).Text.Trim();
+        //public string GetProjectQuantity() => new Message(driver, _projectsQuantityBy).Text.Trim();
+        public int GetProjectQuantity()
+        {
+            int.TryParse(new Message(driver, _projectsQuantityBy).Text.Trim(), out int result);
+            return result;
+        }
         public override string GetEndpoint()
         {
             return _endPoint;
@@ -47,7 +52,7 @@ namespace TMS_Selenium.Pages.ProjectPages
             }
         }
 
-        public ReadOnlyCollection<IWebElement> GetProgectListByName(string projectName)
+        public ReadOnlyCollection<IWebElement> GetProgectListByPartialName(string projectName)
         {
             var projectList = driver.FindElements(By.XPath($"//a[contains(text(),'{projectName}')]"));
             return projectList;

@@ -10,6 +10,12 @@ namespace TMS_Selenium.Tests
     [AllureFeature("Basic Functionality")]
     public class ProjectTests : BaseTest
     {
+        [SetUp] 
+        public void SetUp() 
+        {
+            userStep.SuccessfulLogin();
+        }
+        
         [Test]
         [AllureDescription("Verifying a project with name and type has been added")]
         [AllureSeverity(SeverityLevel.critical)]
@@ -18,12 +24,7 @@ namespace TMS_Selenium.Tests
         {
             string projectName = "EAntonova_" + Guid.NewGuid();
 
-            userStep.SuccessfulLogin();
-            logger.Info("Login successful");
-
-            ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 1);
-            logger.Info($"Added {projectName} project");
-
+            ProjectListPage projectListPage = projectStep.AddProjectWithNameAndRadioButton(projectName, 1);
             navigationStep.NavigateToProjectList();
 
             Assert.That(projectListPage.IsProjectInList(projectName));
@@ -38,16 +39,9 @@ namespace TMS_Selenium.Tests
             string projectName = "EAntonova_" + Guid.NewGuid();
             string expectedMessageText = "Successfully deleted the project.";
 
-            userStep.SuccessfulLogin();
-            logger.Info("Login successful");
-
-            ProjectListPage projectListPage = userStep.AddProjectWithNameAndRadioButton(projectName, 0);
-            logger.Info($"Added {projectName} project");
-
+            ProjectListPage projectListPage = projectStep.AddProjectWithNameAndRadioButton(projectName, 0);
             navigationStep.NavigateToProjectList();
-
-            userStep.DeleteProject(projectName);
-            logger.Info($"Deleted {projectName} project");
+            projectStep.DeleteProject(projectName);
 
             Assert.Multiple(() =>
             {
@@ -71,12 +65,7 @@ namespace TMS_Selenium.Tests
                 IsEnableTestCase = true,
             };
 
-            userStep.SuccessfulLogin();
-            logger.Info("Login successful");
-
-            ProjectListPage projectListPage = userStep.AddProjectWithModel(projectInfo);
-            logger.Info($"Added {projectName} project");
-
+            ProjectListPage projectListPage = projectStep.AddProjectWithModel(projectInfo);
             navigationStep.NavigateToProjectList();
 
             Assert.That(projectListPage.IsProjectInList(projectName));

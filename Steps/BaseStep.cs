@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NLog;
+using OpenQA.Selenium;
 using TMS_Selenium.Pages;
 using TMS_Selenium.Pages.ProjectPages;
 
@@ -6,6 +7,7 @@ namespace TMS_Selenium.Steps
 {
     public class BaseStep
     {
+        protected Logger logger = LogManager.GetCurrentClassLogger();
         protected IWebDriver driver;
         protected LoginPage loginPage;
         protected DashboardPage dashboardPage;

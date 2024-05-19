@@ -19,6 +19,7 @@ namespace TMS_Selenium.Test
     {
         protected IWebDriver driver;
         protected UserStep userStep;
+        protected ProjectStep projectStep;
         protected NavigationStep navigationStep;
         protected Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -36,6 +37,7 @@ namespace TMS_Selenium.Test
             driver = new Browser().Driver;
             new LoginPage(driver, true);
             userStep = new UserStep(driver);
+            projectStep = new ProjectStep(driver);
             navigationStep = new NavigationStep(driver);
         }
 

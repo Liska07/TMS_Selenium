@@ -1,0 +1,4 @@
+2024/05/21 12:37:25.702|INFO|Login successful     
+2024/05/21 12:37:25.941|INFO|Need to delete 2 my projects     
+2024/05/21 12:37:26.326|INFO|Deleted EAntonova_ project     
+2024/05/21 12:37:26.684|INFO|Deleted EAntonova_ project     

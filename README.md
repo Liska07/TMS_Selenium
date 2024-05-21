@@ -1,3 +1,9 @@
-# TMS_Selenium
+# TestRail
 
-This project was created to train Selenium WebDriver (NUnit)
+- Wrappers
+- Page Object Pattern
+- Steps
+- Loadable Page
+- Value Object
+- Allure
+- NLog

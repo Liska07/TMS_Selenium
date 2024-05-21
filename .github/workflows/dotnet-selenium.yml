@@ -1,8 +1,6 @@
 name: Selenium Tests
 run-name: Run ${{github.event.inputs.test_category}} tests
 
-
-
 on:
   workflow_dispatch:
     inputs:

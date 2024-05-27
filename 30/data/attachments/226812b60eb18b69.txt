@@ -1,0 +1,3 @@
+2024/05/27 13:15:47.315|INFO|Login successful     
+2024/05/27 13:15:48.373|INFO|Added EAntonova_03c464c0-401b-446b-92cb-279f78f76f19 project     
+2024/05/27 13:15:48.948|INFO|Deleted EAntonova_03c464c0-401b-446b-92cb-279f78f76f19 project     
